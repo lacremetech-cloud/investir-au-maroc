@@ -202,10 +202,9 @@ em { font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--
   font-size: 12px; color: #B0A898;
 }
 .cal-meta span { display: flex; align-items: center; gap: 5px; }
-.cal-embed {
-  width: 100%; min-height: 580px;
-  border: none; display: block;
-  background: transparent;
+.calendly-inline-widget {
+  width: 100%;
+  border: none;
 }
 .cal-foot {
   padding: 14px 24px;
@@ -336,13 +335,8 @@ footer {
             <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Offert · sans engagement</span>
           </div>
         </div>
-        <iframe
-          class="cal-embed"
-          src="https://calendly.com/investiraumaroc/appel-strategique?embed_type=Inline&hide_gdpr_banner=1&primary_color=C9A961&text_color=F5EBD8&background_color=080604"
-          frameborder="0"
-          scrolling="yes"
-          title="Réserver un appel avec Samir">
-        </iframe>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/investiraumaroc/rendez-vous-conseil?hide_gdpr_banner=1&primary_color=C9A961&text_color=F5EBD8&background_color=080604" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <div class="cal-foot">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           Chaque rendez-vous réservé doit être honoré. En cas d'empêchement, merci de prévenir au moins 24h à l'avance.
