@@ -256,6 +256,36 @@ footer {
   text-align: center;
   font-size: 11px; color: #444;
 }
+
+/* STICKY MOBILE CTA */
+.sticky-cta { display: none; }
+@media(max-width:920px) {
+  .cal-wrap { display: none; }
+  .sticky-cta {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 999;
+    padding: 16px 20px;
+    background: linear-gradient(to top, rgba(3,3,3,1) 60%, rgba(3,3,3,0));
+  }
+  .sticky-cta button {
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: #000;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(201,169,97,0.35);
+    transition: background .2s, transform .15s;
+  }
+  .sticky-cta button:active { transform: scale(0.98); background: var(--gold-d); }
+}
 </style>
 </head>
 <body>
@@ -368,5 +398,11 @@ footer {
   © 2026 Investir au Maroc · By Tajine Business · Tous droits réservés
 </footer>
 
+
+<div class="sticky-cta">
+  <button onclick="Calendly.showPopupWidget('https://calendly.com/investiraumaroc/appel-strategique?hide_gdpr_banner=1&primary_color=C9A961&text_color=F5EBD8&background_color=080604');return false;">
+    Réserver un appel gratuit
+  </button>
+</div>
 </body>
 </html>
