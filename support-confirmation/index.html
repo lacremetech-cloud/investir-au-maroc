@@ -68,38 +68,18 @@ ul{ list-style:none; }
 .li b{ font-weight:800; }
 u.soft{ text-decoration-thickness:1px; text-underline-offset:2px; }
 
-/* GOOGLE AGENDA CARD */
-.gcal-wrap{ margin:24px 0 30px 36px; }
-.gcal{
-  position:relative;
-  border:1px solid #E6E6E6; border-radius:10px;
-  display:flex; gap:18px; padding:18px 20px; max-width:560px;
-  font-family:"Inter",sans-serif;
-  box-shadow:0 1px 3px rgba(0,0,0,.05);
+/* SCREENSHOT FIGURES */
+figure{ margin:22px 0 30px 36px; max-width:640px; }
+figure img{
+  width:100%; display:block; border:1px solid #E6E6E6; border-radius:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
 }
-.gcal-date{
-  width:62px; flex-shrink:0; text-align:center;
-  border:1px solid #E6E6E6; border-radius:8px; overflow:hidden; height:fit-content;
+figcaption{ font-size:12px; color:#9A9A9A; margin-top:8px; }
+.ph{
+  border:2px dashed #D8D8D8; border-radius:10px; padding:40px 20px;
+  text-align:center; color:#A8A8A8; font-size:14px; font-weight:600; background:#FAFAFA;
 }
-.gcal-date .m{ background:#4285F4; color:#fff; font-size:11px; font-weight:600; padding:3px 0; }
-.gcal-date .d{ font-size:26px; font-weight:600; padding:5px 0 1px; color:#202124; }
-.gcal-date .w{ font-size:11px; color:#5F6368; padding-bottom:6px; }
-.gcal-body{ flex:1; min-width:0; }
-.gcal-title{ font-size:15px; font-weight:600; color:#202124; margin-bottom:2px; }
-.gcal-link{ font-size:13px; color:#1A73E8; display:block; margin-bottom:12px; }
-.gcal-meta{ font-size:13px; color:#3C4043; margin-bottom:4px; display:flex; gap:10px; }
-.gcal-meta span{ color:#80868B; width:34px; flex-shrink:0; }
-.gcal-rsvp{ margin-top:14px; }
-.gcal-q{ font-size:13px; color:#3C4043; margin-bottom:7px; }
-.rsvp-btns{ display:flex; align-items:center; gap:8px; }
-.rbtn{
-  font-size:13px; font-weight:500; color:#3C4043;
-  border:1px solid #DADCE0; border-radius:5px; padding:6px 16px; background:#fff;
-}
-.rbtn.yes{ position:relative; z-index:2; }
-/* red arrows pointing at Oui */
-.arrow{ color:var(--red); flex-shrink:0; }
-@media(max-width:600px){ .gcal-wrap{ margin-left:0; } .arrow{ display:none; } }
+@media(max-width:600px){ figure{ margin-left:0; } }
 
 /* FOOTER NOTE */
 .foot{
@@ -136,38 +116,28 @@ u.soft{ text-decoration-thickness:1px; text-underline-offset:2px; }
     </li>
   </ul>
 
-  <!-- Google Agenda invitation mock -->
-  <div class="gcal-wrap">
-    <div class="gcal">
-      <div class="gcal-date">
-        <div class="m">févr.</div>
-        <div class="d">19</div>
-        <div class="w">jeu.</div>
-      </div>
-      <div class="gcal-body">
-        <div class="gcal-title">Investir au Maroc — Appel stratégique</div>
-        <a class="gcal-link">Afficher sur Google Agenda</a>
-        <div class="gcal-meta"><span>Date</span> jeu. 19 févr. 2026 · 16:00 – 17:00 (UTC+1)</div>
-        <div class="gcal-meta"><span>Qui</span> Samir — Tajine Business</div>
-        <div class="gcal-rsvp">
-          <div class="gcal-q">Participez-vous ?</div>
-          <div class="rsvp-btns">
-            <svg class="arrow" width="44" height="20" viewBox="0 0 44 20" fill="none"><path d="M2 10h36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M33 4l8 6-8 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="rbtn yes">Oui</span>
-            <svg class="arrow" width="44" height="20" viewBox="0 0 44 20" fill="none"><path d="M42 10H6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M11 4l-8 6 8 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="rbtn">Peut-être</span>
-            <span class="rbtn">Non</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Image 1 : invitation Google Agenda (Oui / Non) -->
+  <figure>
+    <img src="../assets/confirmation-etape2.png" alt="Email d'invitation Google Agenda — bouton Oui"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <div class="ph" style="display:none;">Image 1 à insérer — assets/confirmation-etape2.png</div>
+  </figure>
 
   <ul>
     <li class="li">
       <span class="em">•</span>
       <span><span class="step-lbl">Étape #3</span> — Dans l'email de confirmation : cliquez sur le bouton «&nbsp;<u class="soft">Oui, je participe</u>&nbsp;» tout en bas de l'email pour confirmer votre présence.</span>
     </li>
+  </ul>
+
+  <!-- Image 2 : email de confirmation (Oui) -->
+  <figure>
+    <img src="../assets/confirmation-etape3.png" alt="Email de confirmation — bouton Oui"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <div class="ph" style="display:none;">Image 2 à insérer — assets/confirmation-etape3.png</div>
+  </figure>
+
+  <ul>
     <li class="li">
       <span class="em">•</span>
       <span>Nous vous enverrons un message sur <b>WhatsApp</b> ou <b>SMS</b> pour une double confirmation. <span style="color:var(--muted)">(Excusez notre insistance, c'est pour nous assurer de votre présence.)</span></span>
