@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Funnel — Investir au Maroc (preversion)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A961;
+  --gold-d: #A8853A;
+  --gold-l: #E8D5A3;
+  --gold-10: rgba(201,169,97,0.1);
+  --gold-20: rgba(201,169,97,0.2);
+  --gold-30: rgba(201,169,97,0.3);
+  --bg: #030303;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --border-gold: rgba(201,169,97,0.18);
+  --text: #F5EBD8;
+  --muted: #B0A898;
+  --green: #5FB87A;
+  --green-bg: rgba(95,184,122,0.12);
+  --amber: #D9A441;
+  --amber-bg: rgba(217,164,65,0.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+em { font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--gold); }
+::selection { background: var(--gold); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+.fu { opacity:0; animation: fadeUp .7s cubic-bezier(.16,1,.3,1) forwards; }
+
+/* TOPBAR */
+.topbar {
+  position: sticky; top:0; z-index:100;
+  padding: 14px 32px;
+  background: rgba(3,3,3,0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.topbar .brand { font-size: 14px; font-weight: 800; letter-spacing: -0.2px; }
+.topbar .brand span { color: var(--gold); }
+.topbar .priv {
+  font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+  border: 1px solid var(--border-gold); border-radius: 100px; padding: 5px 12px;
+}
+
+/* HERO */
+.intro {
+  max-width: 920px; margin: 0 auto;
+  padding: 64px 24px 28px;
+  text-align: center;
+  position: relative;
+}
+.glow {
+  position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 420px;
+  background: radial-gradient(ellipse, rgba(201,169,97,0.10) 0%, transparent 68%);
+  filter: blur(50px); pointer-events: none; z-index:-1;
+}
+.kicker {
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--gold-30); background: var(--gold-10);
+  border-radius: 100px; padding: 6px 16px; margin-bottom: 22px;
+}
+.intro h1 {
+  font-size: clamp(30px, 5vw, 46px); font-weight: 900; line-height: 1.08;
+  letter-spacing: -1.2px; margin-bottom: 16px;
+}
+.intro p { font-size: 15px; color: #C8BBA8; max-width: 620px; margin: 0 auto; }
+
+/* PROGRESS */
+.progress {
+  max-width: 920px; margin: 24px auto 0; padding: 0 24px;
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+}
+.pstat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 20px; text-align: center; min-width: 120px;
+}
+.pstat b {
+  font-family: "Cormorant Garamond", serif; font-size: 26px; font-style: italic;
+  font-weight: 600; display: block; line-height: 1;
+}
+.pstat.ok b { color: var(--green); }
+.pstat.todo b { color: var(--amber); }
+.pstat span { font-size: 10px; color: #8A7E72; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* SECTION */
+.wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
+.sec-head {
+  display: flex; align-items: center; gap: 12px;
+  margin: 48px 0 22px;
+}
+.sec-head:first-child { margin-top: 8px; }
+.sec-head h2 {
+  font-size: 13px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--gold); white-space: nowrap;
+}
+.sec-head .line { height: 1px; background: var(--border-gold); flex: 1; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 12px; }
+.step {
+  display: grid; grid-template-columns: 56px 1fr auto;
+  gap: 18px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 18px 22px;
+  transition: border-color .25s, transform .15s;
+  position: relative; overflow: hidden;
+}
+.step:hover { border-color: var(--border-gold); transform: translateY(-1px); }
+.step.done::before {
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background: var(--green);
+}
+.step.todo::before {
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background: var(--amber);
+}
+.step-n {
+  font-family: "Cormorant Garamond", serif; font-size: 30px; font-style: italic;
+  font-weight: 600; color: rgba(201,169,97,0.45); line-height: 1; text-align: center;
+}
+.step-body { min-width: 0; }
+.step-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.step-desc { font-size: 13px; color: #B5A994; line-height: 1.55; }
+.step-url { font-size: 11px; color: #7E8E9A; margin-top: 6px; word-break: break-all; }
+.step-side { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+
+.tag {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+  padding: 4px 10px; border-radius: 100px; white-space: nowrap;
+}
+.tag.ok { color: var(--green); background: var(--green-bg); border: 1px solid rgba(95,184,122,0.3); }
+.tag.todo { color: var(--amber); background: var(--amber-bg); border: 1px solid rgba(217,164,65,0.3); }
+
+.view {
+  font-size: 12px; font-weight: 700; color: var(--gold);
+  border: 1px solid var(--gold-30); background: var(--gold-10);
+  border-radius: 100px; padding: 7px 16px; white-space: nowrap;
+  transition: background .2s, color .2s;
+}
+.view:hover { background: var(--gold); color: #000; }
+.view.dim { color: #7A6F5C; border-color: var(--border); background: transparent; cursor: default; }
+
+@media(max-width:640px) {
+  .step { grid-template-columns: 40px 1fr; }
+  .step-side { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 4px; }
+  .step-n { font-size: 24px; }
+  .topbar { padding: 12px 18px; }
+}
+
+/* NOTE */
+.note {
+  margin-top: 40px;
+  background: rgba(201,169,97,0.05);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px; padding: 22px 24px;
+  font-size: 13px; color: #C8BBA8; line-height: 1.7;
+}
+.note b { color: var(--text); }
+.note ul { margin: 10px 0 0 18px; }
+.note li { margin-bottom: 6px; }
+
+footer {
+  border-top: 1px solid var(--border-gold);
+  padding: 22px; text-align: center; font-size: 11px; color: #444;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Investir au <span>Maroc</span> · Funnel</div>
+  <div class="priv">Preversion privée</div>
+</div>
+
+<section class="intro">
+  <div class="glow"></div>
+  <div class="kicker fu">Plan du funnel</div>
+  <h1 class="fu">Le funnel complet,<br><em>étape par étape</em></h1>
+  <p class="fu">Structure de refonte du tunnel de vente, calquée sur celle d'Académie Florale. En vert : les pages déjà en ligne. En ambre : les pages qu'il reste à créer.</p>
+</section>
+
+<div class="progress">
+  <div class="pstat ok fu"><b>3</b><span>En ligne</span></div>
+  <div class="pstat todo fu"><b>7</b><span>À créer</span></div>
+  <div class="pstat fu"><b>10</b><span>Étapes au total</span></div>
+</div>
+
+<div class="wrap">
+
+  <div class="sec-head"><h2>Funnel VSL</h2><div class="line"></div></div>
+
+  <div class="steps">
+
+    <!-- 1 -->
+    <div class="step done fu">
+      <div class="step-n">01</div>
+      <div class="step-body">
+        <div class="step-title">Inscription / Optin</div>
+        <div class="step-desc">Capture de l'email — accès à la vidéo offerte.</div>
+        <div class="step-url">investaumaroc.com</div>
+      </div>
+      <div class="step-side">
+        <span class="tag ok">● En ligne</span>
+        <a class="view" href="https://www.investaumaroc.com/" target="_blank" rel="noopener">Voir →</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="step done fu">
+      <div class="step-n">02</div>
+      <div class="step-body">
+        <div class="step-title">Vidéo / VSL</div>
+        <div class="step-desc">Présentation de l'offre + bouton de réservation de l'appel.</div>
+        <div class="step-url">investaumaroc.com/vsl</div>
+      </div>
+      <div class="step-side">
+        <span class="tag ok">● En ligne</span>
+        <a class="view" href="https://www.investaumaroc.com/vsl" target="_blank" rel="noopener">Voir →</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="step done fu">
+      <div class="step-n">03</div>
+      <div class="step-body">
+        <div class="step-title">Call / Réservation</div>
+        <div class="step-desc">Prise de rendez-vous Calendry — l'appel stratégique de 30 min.</div>
+        <div class="step-url">investaumaroc.com/call</div>
+      </div>
+      <div class="step-side">
+        <span class="tag ok">● En ligne</span>
+        <a class="view" href="https://www.investaumaroc.com/call" target="_blank" rel="noopener">Voir →</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="step todo fu">
+      <div class="step-n">04</div>
+      <div class="step-body">
+        <div class="step-title">Confirmation</div>
+        <div class="step-desc">Page « rendez-vous confirmé » après réservation. Rassure, donne la date/heure et le lien visio.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="step todo fu">
+      <div class="step-n">05</div>
+      <div class="step-body">
+        <div class="step-title">Préparation à l'entretien</div>
+        <div class="step-desc">Ce qu'il faut préparer avant l'appel (projet, budget, situation fiscale) pour maximiser le show-up.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="step todo fu">
+      <div class="step-n">06</div>
+      <div class="step-body">
+        <div class="step-title">Témoignage investisseur #1</div>
+        <div class="step-desc">Retour d'expérience d'un client accompagné — preuve sociale immobilier Maroc.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="step todo fu">
+      <div class="step-n">07</div>
+      <div class="step-body">
+        <div class="step-title">Témoignage investisseur #2</div>
+        <div class="step-desc">Deuxième retour d'expérience — profil / ville différents pour élargir l'identification.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="step todo fu">
+      <div class="step-n">08</div>
+      <div class="step-body">
+        <div class="step-title">Témoignage investisseur #3</div>
+        <div class="step-desc">Troisième retour d'expérience — renforce la crédibilité avant l'appel.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="step todo fu">
+      <div class="step-n">09</div>
+      <div class="step-body">
+        <div class="step-title">Explication — Pourquoi c'est différent</div>
+        <div class="step-desc">La méthode et le positionnement : pourquoi se faire accompagner plutôt qu'investir seul.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="step todo fu">
+      <div class="step-n">10</div>
+      <div class="step-body">
+        <div class="step-title">Extrait d'accompagnement</div>
+        <div class="step-desc">Aperçu concret du coaching / de l'accompagnement (vidéo ou contenu) pour montrer la valeur.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="step todo fu">
+      <div class="step-n">11</div>
+      <div class="step-body">
+        <div class="step-title">Déjà propriétaires au Maroc</div>
+        <div class="step-desc">Équivalent du « Pour les pros » : les clients déjà installés / propriétaires accompagnés.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-head"><h2>Annexes</h2><div class="line"></div></div>
+
+  <div class="steps">
+    <!-- Avis -->
+    <div class="step todo fu">
+      <div class="step-n">★</div>
+      <div class="step-body">
+        <div class="step-title">Avis clients</div>
+        <div class="step-desc">Page d'avis (Trustpilot / Google) — preuve sociale agrégée, comme la page Avis d'Académie Florale.</div>
+      </div>
+      <div class="step-side">
+        <span class="tag todo">À créer</span>
+        <span class="view dim">—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="note fu">
+    <b>Ce qu'il manque par rapport à Académie Florale</b>
+    <ul>
+      <li><b>Confirmation</b> de rendez-vous (post-Calendly)</li>
+      <li><b>Préparation à l'entretien</b> (avant l'appel)</li>
+      <li><b>3 pages témoignages</b> d'investisseurs accompagnés</li>
+      <li><b>Explication</b> « pourquoi c'est différent »</li>
+      <li><b>Extrait d'accompagnement / coaching</b></li>
+      <li><b>Page « déjà propriétaires »</b> (équivalent « Pour les pros »)</li>
+      <li><b>Page Avis</b> clients</li>
+    </ul>
+    Soit <b>7 pages à produire</b> pour aligner le funnel sur celui d'Académie Florale. Le tout sur la même charte (or / noir, Tajine Business).
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Investir au Maroc · By Tajine Business · Aperçu interne du funnel
+</footer>
+
+</body>
+</html>
